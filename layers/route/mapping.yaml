@@ -1,0 +1,25 @@
+tables:
+  route_relation_members:
+    type: relation_member
+    columns:
+    - name: osm_id
+      type: id
+    - name: member
+      type: member_id
+    - name: geometry
+      type: geometry
+    - name: network
+      key: network
+      type: string
+    - name: name
+      key: name
+      type: string
+    - name: ref
+      key: ref
+      type: string
+    - name: type
+      type: mapping_value
+    mapping:
+      route: 
+      - bicycle
+      - mtb
