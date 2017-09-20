@@ -1,0 +1,20 @@
+layer:
+  id: "rcn_ref_number"
+  description: |
+       Represents the node number of a numbered junction in the regional bicycle node network.
+  buffer_size: 8
+  fields:
+    rcn_ref_num: "Regional cycle route point reference number"
+  datasource:
+    geometry_field: geometry
+    query: |-
+          (
+            SELECT geometry, rcn_ref_num
+            FROM rcn_ref_label_z7toz14
+            WHERE geometry && !bbox! AND z(!scale_denominator!) BETWEEN 7 AND 14
+          ) AS t
+schema:
+  - ./layer.sql
+datasources:
+  - type: imposm3
+    mapping_file: ./mapping.yaml

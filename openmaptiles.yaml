@@ -16,6 +16,7 @@ tileset:
     - layers/housenumber/housenumber.yaml
     - layers/poi/poi.yaml
     - layers/route/route.yaml
+    - layers/rcn_ref_number/rcn_ref_number.yaml
   name: OpenMapTiles
   version: 3.3.0
   id: openmaptiles

@@ -1,0 +1,13 @@
+tables:
+  rcn_ref_point:
+    fields:
+    - name: id
+      type: id
+    - name: geometry
+      type: geometry
+    - name: rcn_ref_num
+      type: mapping_value
+    mapping:
+      rcn_ref:
+      - __any__
+    type: point
