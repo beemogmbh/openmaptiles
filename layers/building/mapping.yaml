@@ -239,10 +239,6 @@ tables:
       type: [associatedStreet]
     type: relation_member
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 3a1a2b4210935d0a898e4c36672836b69eecb61e
   # etldoc: imposm3 -> osm_building_relation
   building_relation:
     fields:
