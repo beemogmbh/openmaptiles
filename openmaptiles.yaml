@@ -14,7 +14,6 @@ tileset:
     - layers/transportation_name/transportation_name.yaml
     - layers/place/place.yaml
     - layers/housenumber/housenumber.yaml
-    - layers/poi/poi.yaml
     - layers/aerodrome_label/aerodrome_label.yaml
     - layers/route/route.yaml
     - layers/rcn_ref_number/rcn_ref_number.yaml
