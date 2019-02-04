@@ -14,7 +14,10 @@ BEGIN
   WITH important_marine_point AS (
       SELECT osm.geometry, osm.osm_id, osm.name, osm.name_en, ne.scalerank
       FROM ne_10m_geography_marine_polys AS ne, osm_marine_point AS osm
-      WHERE ne.name ILIKE osm.name
+      WHERE trim(regexp_replace(ne.name, '\\s+', ' ', 'g')) ILIKE osm.name
+        OR trim(regexp_replace(ne.name, '\\s+', ' ', 'g')) ILIKE osm.tags->'name:en'
+        OR trim(regexp_replace(ne.name, '\\s+', ' ', 'g')) ILIKE osm.tags->'name:es'
+        OR osm.name ILIKE trim(regexp_replace(ne.name, '\\s+', ' ', 'g')) || ' %'
   )
   UPDATE osm_marine_point AS osm
   SET "rank" = scalerank
@@ -22,7 +25,7 @@ BEGIN
   WHERE osm.osm_id = ne.osm_id;
 
   UPDATE osm_marine_point
-  SET tags = slice_language_tags(tags) || get_basic_names(tags, geometry)
+  SET tags = update_tags(tags, geometry)
   WHERE COALESCE(tags->'name:latin', tags->'name:nonlatin', tags->'name_int') IS NULL;
 
 END;

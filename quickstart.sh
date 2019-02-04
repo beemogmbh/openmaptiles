@@ -129,6 +129,7 @@ echo "====> : Making directories - if they don't exist ( ./build ./data ./pgdata
 mkdir -p pgdata
 mkdir -p build
 mkdir -p data
+mkdir -p wikidata
 
 echo " "
 echo "-------------------------------------------------------------------------------------"
@@ -186,7 +187,7 @@ echo " "
 echo "-------------------------------------------------------------------------------------"
 echo "====> : Drop and Recreate PostgreSQL  public schema "
 # Drop all PostgreSQL tables
-# This is add an extra safe belt , if the user modify the docker volume seetings
+# This adds an extra safety belt if the user modifies the docker volume settings
 make forced-clean-sql
 
 echo " "
@@ -230,6 +231,14 @@ echo "      :   Source code: https://github.com/openmaptiles/import-osm "
 echo "      : The OpenstreetMap data license: https://www.openstreetmap.org/copyright (ODBL) "
 echo "      : Thank you OpenStreetMap Contributors ! "
 docker-compose run --rm import-osm
+
+echo " "
+echo "-------------------------------------------------------------------------------------"
+echo "====> : Start importing Wikidata: ./wikidata/latest-all.json.gz -> PostgreSQL"
+echo "      : Source code: https://github.com/openmaptiles/import-wikidata "
+echo "      : The Wikidata license: https://www.wikidata.org/wiki/Wikidata:Database_download/en#License "
+echo "      : Thank you Wikidata Contributors ! "
+docker-compose run --rm import-wikidata
 
 echo " "
 echo "-------------------------------------------------------------------------------------"
@@ -288,7 +297,11 @@ cat ./data/quickstart_checklist.chk
 
 ENDTIME=$(date +%s)
 ENDDATE=$(date +"%Y-%m-%dT%H:%M%z")
-MODDATE=$(stat -c  %y  ./data/${testdata} )
+if stat --help >/dev/null 2>&1; then
+  MODDATE=$(stat -c %y ./data/${testdata} )
+else
+  MODDATE=$(stat -f%Sm -t '%F %T %z' ./data/${testdata} )
+fi
 
 echo " "
 echo " "
@@ -314,7 +327,7 @@ echo "====> : (disk space) We have created the new vectortiles ( ./data/tiles.mb
 echo "      : Please respect the licenses (OdBL for OSM data) of the sources when distributing the MBTiles file."
 echo "      : Created from $testdata ( file moddate: $MODDATE ) "
 echo "      : Size: "
-ls ./data/*.mbtiles -la
+ls -la ./data/*.mbtiles
 
 echo " "
 echo "-------------------------------------------------------------------------------------"

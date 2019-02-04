@@ -9,11 +9,11 @@ CREATE MATERIALIZED VIEW osm_water_lakeline AS (
 	SELECT wp.osm_id,
 		ll.wkb_geometry AS geometry,
 		name, name_en, name_de,
-		slice_language_tags(tags) || get_basic_names(tags, ll.wkb_geometry) AS tags,
+		update_tags(tags, ll.wkb_geometry) AS tags,
 		ST_Area(wp.geometry) AS area
     FROM osm_water_polygon AS wp
     INNER JOIN lake_centerline ll ON wp.osm_id = ll.osm_id
-    WHERE wp.name <> ''
+    WHERE wp.name <> '' AND ST_IsValid(wp.geometry)
 );
 CREATE INDEX IF NOT EXISTS osm_water_lakeline_geometry_idx ON osm_water_lakeline USING gist(geometry);
 

@@ -33,16 +33,17 @@ CREATE OR REPLACE VIEW boundary_z3 AS (
 
 
 -- etldoc: ne_10m_admin_0_boundary_lines_land -> boundary_z4
--- etldoc: ne_10m_admin_1_states_provinces_lines_shp -> boundary_z4
+-- etldoc: ne_10m_admin_1_states_provinces_lines -> boundary_z4
 -- etldoc: osm_border_linestring_gen10 -> boundary_z4
 
 CREATE OR REPLACE VIEW boundary_z4 AS (
     SELECT geometry, 2 AS admin_level, false AS disputed, false AS maritime
     FROM ne_10m_admin_0_boundary_lines_land
+    WHERE featurecla <> 'Lease limit'
     UNION ALL
     SELECT geometry, 4 AS admin_level, false AS disputed, false AS maritime
-    FROM ne_10m_admin_1_states_provinces_lines_shp
-    WHERE scalerank <= 3 AND featurecla = 'Adm-1 boundary'
+    FROM ne_10m_admin_1_states_provinces_lines
+    WHERE scalerank <= 3 AND min_zoom <= 7
     UNION ALL
     SELECT geometry, admin_level, disputed, maritime
     FROM osm_border_linestring_gen10
@@ -50,16 +51,17 @@ CREATE OR REPLACE VIEW boundary_z4 AS (
 );
 
 -- etldoc: ne_10m_admin_0_boundary_lines_land -> boundary_z5
--- etldoc: ne_10m_admin_1_states_provinces_lines_shp -> boundary_z5
+-- etldoc: ne_10m_admin_1_states_provinces_lines -> boundary_z5
 -- etldoc: osm_border_linestring_gen9 -> boundary_z5
 
 CREATE OR REPLACE VIEW boundary_z5 AS (
     SELECT geometry, 2 AS admin_level, false AS disputed, false AS maritime
     FROM ne_10m_admin_0_boundary_lines_land
+    WHERE featurecla <> 'Lease limit'
     UNION ALL
     SELECT geometry, 4 AS admin_level, false AS disputed, false AS maritime
-    FROM ne_10m_admin_1_states_provinces_lines_shp
-    WHERE scalerank <= 7 AND featurecla = 'Adm-1 boundary'
+    FROM ne_10m_admin_1_states_provinces_lines
+    WHERE scalerank <= 7 AND min_zoom <= 8
     UNION ALL
     SELECT geometry, admin_level, disputed, maritime
     FROM osm_border_linestring_gen9
@@ -114,7 +116,7 @@ CREATE OR REPLACE VIEW boundary_z12 AS (
     FROM osm_border_linestring_gen2
 );
 
--- etldoc: osm_border_linestring_gen1 -> boundary_z12
+-- etldoc: osm_border_linestring_gen1 -> boundary_z13
 CREATE OR REPLACE VIEW boundary_z13 AS (
     SELECT geometry, admin_level, disputed, maritime
     FROM osm_border_linestring_gen1

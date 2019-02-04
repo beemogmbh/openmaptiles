@@ -1,7 +1,8 @@
 layer:
   id: "transportation"
   description: |
-      **transportation** contains roads and railways.
+      **transportation** contains roads, railways, aerial ways, and shipping
+       lines.
       This layer is directly derived from the OSM road hierarchy.
       At lower zoom levels major highways from Natural Earth are used.
       It contains all roads from motorways to primary, secondary and
@@ -15,8 +16,12 @@ layer:
       description: |
           Distinguish between more and less important roads or railways.
           Class is derived from the value of the
-          [`highway`](http://wiki.openstreetmap.org/wiki/Key:highway) or
-          [`railway`](http://wiki.openstreetmap.org/wiki/Key:railway) tag.
+          [`highway`](http://wiki.openstreetmap.org/wiki/Key:highway),
+          [`railway`](http://wiki.openstreetmap.org/wiki/Key:railway),
+          [`aerialway`](http://wiki.openstreetmap.org/wiki/Key:aerialway),
+          [`route`](http://wiki.openstreetmap.org/wiki/Key:route) tag (for
+          shipping ways), or
+          [`man_made`](http://wiki.openstreetmap.org/wiki/Key:route).
       values:
       - motorway
       - trunk
@@ -30,6 +35,34 @@ layer:
       - raceway
       - rail
       - transit
+      - cable_car
+      - ferry
+      - bridge
+      - pier
+    subclass:
+      description: |
+          Distinguish more specific classes of railway and path:
+          Subclass is value of the
+          [`railway`](http://wiki.openstreetmap.org/wiki/Key:railway),
+          [`highway`](http://wiki.openstreetmap.org/wiki/Key:highway) (for paths), or
+          [`public_transport`](http://wiki.openstreetmap.org/wiki/Key:public_transport) (for platforms) tag.
+      values:
+      - rail
+      - narrow_gauge
+      - preserved
+      - funicular
+      - subway
+      - light_rail
+      - monorail
+      - tram
+      - pedestrian
+      - path
+      - footway
+      - cycleway
+      - steps
+      - bridleway
+      - corridor
+      - platform
     brunnel:
       description: |
           Mark whether way is a tunnel or bridge.
@@ -39,9 +72,10 @@ layer:
         - ford
     oneway:
       description: |
-          Mark with `1` whether way is a oneway (in the direction of the way)
-          or not with `0`.
-      values: [0, 1]
+          Mark with `1` whether way is a oneway in the direction of the way,
+          with `-1` whether way is a oneway in the opposite direction of the way
+          or not a oneway with `0`.
+      values: [0, 1, -1]
     ramp:
       description: |
           Mark with `1` whether way is a ramp (link or steps)
@@ -58,10 +92,23 @@ layer:
       - driveway
       - alley
       - parking_aisle
+    layer:
+      description: |
+          Original value of [`layer`](http://wiki.openstreetmap.org/wiki/Key:layer) tag.
+    level:
+      description: |
+          Experimental feature! Filled only for steps and footways. Original
+          value of [`level`](http://wiki.openstreetmap.org/wiki/Key:level) tag.
+    indoor:
+      description: |
+          Experimental feature! Filled only for steps and footways. Original
+          value of [`indoor`](http://wiki.openstreetmap.org/wiki/Key:indoor) tag.
+      values:
+      - 1
   datasource:
     geometry_field: geometry
     srid: 900913
-    query: (SELECT geometry, class, oneway, ramp, brunnel, service FROM layer_transportation(!bbox!, z(!scale_denominator!))) AS t
+    query: (SELECT geometry, class, subclass, oneway, ramp, brunnel, service, layer, level, indoor FROM layer_transportation(!bbox!, z(!scale_denominator!))) AS t
 schema:
   - ./class.sql
   - ./update_transportation_merge.sql
