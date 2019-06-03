@@ -36,6 +36,7 @@ tileset:
     - br # Breton, Latin
     - bs # Bosnian, Latin
     - ca # Catalan, Latin
+    - co # Corsican, Latin
     - cs # Czech, Latin
     - cy # Welsh, Latin
     - da # Danish, Latin
@@ -45,6 +46,7 @@ tileset:
     - eo # Esperanto, Latin
     - es # Spanish, Latin
     - et # Estonian, Latin
+    - eu # Basque, Latin
     - fi # Finnish, Latin
     - fr # French, Latin
     - fy # Western Frisian, Latin
@@ -54,6 +56,7 @@ tileset:
     - hr # Croatian, Latin
     - hu # Hungarian, Latin
     - hy # Armenian
+    - id # Indonesian, Latin
     - is # Icelandic, Latin
     - it # Italian, Latin
     - ja # Japanese
@@ -73,6 +76,7 @@ tileset:
     - ml # Malayalam
     - nl # Dutch, Latin
     - "no" # Norwegian, Latin
+    - oc # Occitan (post 1500), Latin
     - pl # Polish, Latin
     - pt # Portuguese, Latin
     - rm # Romansh, Latin
