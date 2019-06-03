@@ -137,6 +137,10 @@ surface_field: &surface
   key: surface
   name: surface
   type: string
+bicycle_field: &bicycle
+  key: bicycle
+  name: bicycle
+  type: string
 
 tables:
 # etldoc: imposm3 -> osm_highway_linestring
@@ -173,6 +177,7 @@ tables:
     - *public_transport
     - *man_made
     - *surface
+    - *bicycle
     mapping:
       highway:
       - motorway
