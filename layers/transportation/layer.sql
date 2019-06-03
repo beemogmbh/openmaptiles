@@ -154,13 +154,10 @@ indoor INT) AS $$
             z_order
         FROM osm_highway_linestring
         WHERE NOT is_area AND (
-            zoom_level = 12 AND (
-                highway_class(highway, public_transport) NOT IN ('track', 'path', 'minor')
-                OR highway IN ('unclassified', 'residential')
-            ) AND man_made <> 'pier'
+            zoom_level = 12 AND man_made <> 'pier'
             OR zoom_level = 13
                 AND (
-                    highway_class(highway, public_transport) NOT IN ('track', 'path') AND man_made <> 'pier'
+                    man_made <> 'pier'
                 OR
                     man_made = 'pier' AND NOT ST_IsClosed(geometry)
                 )
