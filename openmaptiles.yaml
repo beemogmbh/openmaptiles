@@ -1,5 +1,6 @@
 tileset:
   layers:
+    - layers/naviki_poi/naviki_poi.yaml
     - layers/water/water.yaml
     - layers/waterway/waterway.yaml
     - layers/landcover/landcover.yaml

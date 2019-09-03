@@ -25,6 +25,9 @@ help:
 	@echo "  make mapping-graph                   # hint for generating a single mapping graph"
 	@echo "  make import-sql-dev                  # start import-sql /bin/bash terminal"
 	@echo "  make import-osm-dev                  # start import-osm /bin/bash terminal (imposm3)"
+	@echo "  make import-rank                     # imports rank data"
+	@echo "  make import-rank-and-category        # imports category and rank data"
+	@echo "  make test-import-rank-and-category   # runs tests for import rank and import category data"
 	@echo "  make clean-docker                    # remove docker containers, PG data volume"
 	@echo "  make forced-clean-sql                # drop all PostgreSQL tables for clean environment"
 	@echo "  make docker-unnecessary-clean        # clean unnecessary docker image(s) and container(s)"
@@ -36,6 +39,15 @@ help:
 	@echo "  cat  quickstart.log                  # backup of the last ./quickstart.sh"
 	@echo "  make help                            # help about available commands"
 	@echo "=============================================================================="
+
+import-rank: db-start
+	docker-compose run --rm import-rank
+
+import-rank-and-category: db-start
+	docker-compose run --rm import-rank-and-category
+
+test-import-rank-and-category: db-start
+	docker-compose run --rm test-import-rank-and-category
 
 build:
 	mkdir -p build

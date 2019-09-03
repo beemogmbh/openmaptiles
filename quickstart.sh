@@ -242,6 +242,13 @@ docker-compose run --rm import-wikidata
 
 echo " "
 echo "-------------------------------------------------------------------------------------"
+echo "====> : Running tests for category and rank"
+make test-import-rank-and-category
+echo "====> : Importing category and rank"
+make import-rank-and-category
+
+echo " "
+echo "-------------------------------------------------------------------------------------"
 echo "====> : Start SQL postprocessing:  ./build/tileset.sql -> PostgreSQL "
 echo "      : Source code: https://github.com/openmaptiles/import-sql "
 docker-compose run --rm import-sql

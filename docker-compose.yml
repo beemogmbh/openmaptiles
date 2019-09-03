@@ -12,6 +12,24 @@ services:
     ports:
      - "5432"
     env_file: .env
+  import-rank:
+    image: "nexus.beemo.eu:5555/omt/naviki-poi"
+    env_file: .env
+    networks:
+    - postgres_conn
+    command: "rank.sh"
+  import-rank-and-category:
+    image: "nexus.beemo.eu:5555/omt/naviki-poi"
+    env_file: .env
+    networks:
+    - postgres_conn  
+    command: "rank-and-category.sh"
+  test-import-rank-and-category:
+    image: "nexus.beemo.eu:5555/omt/naviki-poi"
+    env_file: .env
+    networks:
+    - postgres_conn
+    command: "test.sh"
   import-natural-earth:
     image: "openmaptiles/import-natural-earth:1.4"
     env_file: .env
