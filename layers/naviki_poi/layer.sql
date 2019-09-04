@@ -35,7 +35,7 @@ RETURNS TABLE(osm_id bigint, geometry geometry, name text, name_en text, name_de
         ORDER BY "rank") as poi_naviki_union_union 
     WHERE 
     (
-        ("rank" <= 10 and zoom_level < 14) OR
+        ("rank" <= 5 and zoom_level < 14) OR
         (zoom_level >= 14) 
     )
     ;

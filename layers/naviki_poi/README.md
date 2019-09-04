@@ -98,6 +98,12 @@ Run import-rank-and-category after the import-osm call.
 
 Make sure the environment variables are set properly.
 
+#### environment variables
+Set the name of the poi_point and poi_polygon tables.
+Set the cpu count that is going to be used for te categorizing and ranking process.
+If the cpu count is less than 1 or greater than the cpu count avariable on the given machine, the 
+maximum possible cpu count will be used.
+
 It's recommended to run test-rank-and-category before running import-rank-and-category.
 
 ## important
