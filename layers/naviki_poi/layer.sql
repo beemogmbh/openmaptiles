@@ -15,7 +15,7 @@ RETURNS TABLE(osm_id bigint, geometry geometry, name text, name_en text, name_de
             CASE WHEN indoor=TRUE THEN 1 ELSE NULL END as indoor,
             row_number() OVER (
                 PARTITION BY LabelGrid(geometry, 100 * pixel_width), category
-                ORDER BY ranking DESC
+                ORDER BY priority DESC
             )::int AS "rank"
         FROM 
         (
