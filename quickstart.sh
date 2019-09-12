@@ -242,10 +242,10 @@ docker-compose run --rm import-wikidata
 
 echo " "
 echo "-------------------------------------------------------------------------------------"
-echo "====> : Running tests for category and rank"
-make test-import-rank-and-category
-echo "====> : Importing category and rank"
-make import-rank-and-category
+echo "====> : Running tests for import-priority-and-category"
+make test-import-priority-and-category
+echo "====> : Importing priority and category for points of interest"
+make import-priority-and-category
 
 echo " "
 echo "-------------------------------------------------------------------------------------"
