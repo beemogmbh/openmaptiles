@@ -404,12 +404,6 @@ tables:
     - name: name
       key: name
       type: string
-    - name: name_en
-      key: name:en
-      type: string
-    - name: name_de
-      key: name:de
-      type: string
     - name: tags
       type: hstore_tags
     - name: website
@@ -418,15 +412,6 @@ tables:
     - name: station
       key: station
       type: string
-    - name: level
-      key: level
-      type: integer
-    - name: indoor
-      key: indoor
-      type: bool
-    - name: layer
-      key: layer
-      type: integer
     mapping:
       aerialway: *poi_mapping_aerialway
       aeroway: *poi_mapping_aeroway
@@ -457,12 +442,6 @@ tables:
     - name: name
       key: name
       type: string
-    - name: name_en
-      key: name:en
-      type: string
-    - name: name_de
-      key: name:de
-      type: string
     - name: tags
       type: hstore_tags
     - name: website
@@ -471,15 +450,6 @@ tables:
     - name: station
       key: station
       type: string
-    - name: level
-      key: level
-      type: integer
-    - name: indoor
-      key: indoor
-      type: bool
-    - name: layer
-      key: layer
-      type: integer
     mapping:
       aerialway: *poi_mapping_aerialway
       aeroway: *poi_mapping_aeroway

@@ -1,18 +1,13 @@
 CREATE OR REPLACE FUNCTION layer_naviki_poi(bbox geometry, zoom_level integer, pixel_width numeric)
-RETURNS TABLE(osm_id bigint, geometry geometry, name text, name_en text, name_de text, category text, website text, layer integer, level integer, indoor integer, "rank" int) AS $$
+RETURNS TABLE(osm_id bigint, geometry geometry, name text, category text, website text, "rank" int) AS $$
     SELECT * FROM 
     (
         SELECT 
             osm_id_hash AS osm_id, 
             geometry, 
             NULLIF(name, '') AS name,
-            COALESCE(NULLIF(name_en, ''), NULLIF(name, '')) AS name_en,
-            COALESCE(NULLIF(name_de, ''), NULLIF(name, ''), NULLIF(name_en, '')) AS name_de,
             NULLIF(category, ''),
             NULLIF(website, '') AS website,
-            NULLIF(layer, 0) AS layer,
-            "level",
-            CASE WHEN indoor=TRUE THEN 1 ELSE NULL END as indoor,
             row_number() OVER (
                 PARTITION BY LabelGrid(geometry, 100 * pixel_width), category
                 ORDER BY priority DESC
