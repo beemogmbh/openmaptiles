@@ -1,11 +1,3 @@
-CREATE OR REPLACE FUNCTION printer(var1 numeric, var2 text)
-returns TEXT as $$
-begin
-    raise exception '% , %', var1, var2;
-    SELECT "OL";
-end;
-$$ LANGUAGE plpgsql;
-
 CREATE OR REPLACE FUNCTION layer_naviki_poi(bbox geometry, zoom_level integer, pixel_width numeric)
 RETURNS TABLE(osm_id bigint, geometry geometry, name text, category text, website text, "rank" int) AS $$
     SELECT * FROM 
