@@ -9,6 +9,16 @@ def_poi_mapping_aeroway: &poi_mapping_aeroway
   - gate
   - terminal
 
+def_poi_mapping_bicycle_parking: &poi_mapping_bicycle_parking
+  - stands
+  - wide_stands
+  - shed
+  - streetpod
+  - lockers
+  - bollard
+  - building
+  - tree
+
 def_poi_mapping_amenity: &poi_mapping_amenity
   - bicycle_rental
   - bicycle_parking
@@ -392,6 +402,9 @@ def_poi_mapping_tourism: &poi_mapping_tourism
   - alpine_hut
   - wilderness_hut
 
+tags:
+    include: ['service:bicycle:rental', covered, disused, cuisine, genre, sport, water, no_name, drinking_water, vending]
+
 tables:
   # etldoc: imposm3 -> osm_naviki_poi_polygon
   naviki_poi_polygon:
@@ -409,13 +422,11 @@ tables:
     - name: website
       key: contact:website
       type: string
-    - name: station
-      key: station
-      type: string
     mapping:
       aerialway: *poi_mapping_aerialway
       aeroway: *poi_mapping_aeroway
       amenity: *poi_mapping_amenity
+      bicycle_parking: *poi_mapping_bicycle_parking
       building: *poi_mapping_building
       craft: *poi_mapping_craft
       emergency: *poi_mapping_emergency
@@ -447,13 +458,11 @@ tables:
     - name: website
       key: contact:website
       type: string
-    - name: station
-      key: station
-      type: string
     mapping:
       aerialway: *poi_mapping_aerialway
       aeroway: *poi_mapping_aeroway
       amenity: *poi_mapping_amenity
+      bicycle_parking: *poi_mapping_bicycle_parking
       building: *poi_mapping_building
       craft: *poi_mapping_craft
       emergency: *poi_mapping_emergency
