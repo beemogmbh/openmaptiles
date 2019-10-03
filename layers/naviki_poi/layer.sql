@@ -1,3 +1,11 @@
+CREATE OR REPLACE FUNCTION printer(var1 numeric, var2 text)
+returns TEXT as $$
+begin
+    raise exception '% , %', var1, var2;
+    SELECT "OL";
+end;
+$$ LANGUAGE plpgsql;
+
 CREATE OR REPLACE FUNCTION layer_naviki_poi(bbox geometry, zoom_level integer, pixel_width numeric)
 RETURNS TABLE(osm_id bigint, geometry geometry, name text, category text, website text, "rank" int) AS $$
     SELECT * FROM 
@@ -6,10 +14,10 @@ RETURNS TABLE(osm_id bigint, geometry geometry, name text, category text, websit
             osm_id_hash AS osm_id, 
             geometry, 
             NULLIF(name, '') AS name,
-            NULLIF(category, ''),
+            NULLIF(category, '') AS category,
             NULLIF(website, '') AS website,
             row_number() OVER (
-                PARTITION BY LabelGrid(geometry, 100 * pixel_width), category
+                PARTITION BY LabelGrid(geometry, 128 * pixel_width), category
                 ORDER BY priority DESC
             )::int AS "rank"
         FROM 
@@ -30,7 +38,7 @@ RETURNS TABLE(osm_id bigint, geometry geometry, name text, category text, websit
         ORDER BY "rank") as poi_naviki_union_union 
     WHERE 
     (
-        ("rank" <= 5 and zoom_level < 14) OR
+        ("rank" <= 10 and zoom_level < 14) OR
         (zoom_level >= 14) 
     )
     ;
