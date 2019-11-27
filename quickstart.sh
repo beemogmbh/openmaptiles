@@ -29,6 +29,10 @@ else
 fi
 testdata=${osm_area}.osm.pbf
 
+if [ $# -eq 2 ]; then
+    ids_to_drop=$2
+fi
+
 ##  Min versions ...
 MIN_COMPOSE_VER=1.7.1
 MIN_DOCKER_VER=1.12.3
@@ -157,11 +161,17 @@ else
     echo "====> : The testdata ./data/$testdata exists, we don't need to download! "
 fi
 
-
 if [ !  -f ./data/${testdata} ]; then
     echo " "
     echo "Missing ./data/$testdata , Download or Parameter error? "
     exit 404
+fi
+
+if [ ! -z ${ids_to_drop+x} ]; then
+    echo " "
+    echo "-------------------------------------------------------------------------------------"
+    echo "====> : Dropping ways and nodes with ids $ids_to_drop "
+    make drop-ids     ids=${ids_to_drop}  pbf=${testdata}
 fi
 
 echo " "

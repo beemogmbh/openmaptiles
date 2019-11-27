@@ -73,6 +73,20 @@ download-geofabrik:
 	cat ./data/docker-compose-config.yml
 	@echo " "
 
+comma:= ,
+empty:=
+space_equals:= $(empty) =$(empty)
+
+drop-ids:
+	@echo Converting PBF to O5M ...
+	osmconvert ./data/$(pbf) -o=./data/temp.o5m
+	@echo Dropping ways and nodes ...
+	osmfilter ./data/temp.o5m --drop-nodes-ways="@id=$(subst $(comma),$(space_equals),$(ids))" -o=./data/filtered.o5m
+	@echo Converting O5M to PBF ...
+	rm -f ./data/$(pbf) && osmconvert ./data/filtered.o5m -o=./data/$(pbf)
+	@echo Removing temp data ...
+	rm -f ./data/temp.o5m ./data/filtered.o5m
+
 psql: db-start
 	docker-compose run --rm import-osm ./psql.sh
 
