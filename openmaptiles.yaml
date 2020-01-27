@@ -17,6 +17,7 @@ tileset:
     - layers/aerodrome_label/aerodrome_label.yaml
     - layers/route/route.yaml
     - layers/rcn_ref_number/rcn_ref_number.yaml
+    - layers/landmark/landmark.yaml
 
   name: OpenMapTiles
   version: 3.11.0

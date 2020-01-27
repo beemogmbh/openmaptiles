@@ -1,0 +1,93 @@
+
+# imposm3 mapping file for https://github.com/osm2vectortiles/imposm3
+# Warning: this is not the official imposm3
+
+# amenity values, see http://taginfo.openstreetmap.org/keys/amenity#values
+def_landmark_mapping_amenity: &landmark_mapping_amenity
+  - hospital
+  - place_of_worship
+  - public_bath
+  - townhall
+
+# historic values, see http://taginfo.openstreetmap.org/keys/historic#values
+def_landmark_mapping_historic: &landmark_mapping_historic
+  - memorial
+  - monument
+  - castle
+  - ruins
+
+# landuse values, see http://taginfo.openstreetmap.org/keys/landuse#values
+def_landmark_mapping_landuse: &landmark_mapping_landuse
+  - allotments
+  - cemetery
+  - forest
+  - landfill
+  - quarry
+  - recreation_ground
+
+# leisure values, see http://taginfo.openstreetmap.org/keys/leisure#values
+def_landmark_mapping_leisure: &landmark_mapping_leisure
+  - golf_course
+  - park
+  - playground
+  - pitch
+  - sauna
+  - sports_centre
+  - stadium
+  - water_park
+
+# railway values, see http://taginfo.openstreetmap.org/keys/railway#values
+def_landmark_mapping_railway: &landmark_mapping_railway
+  - halt
+  - station
+  - tram_stop
+
+# tourism values, see http://taginfo.openstreetmap.org/keys/tourism#values
+def_landmark_mapping_tourism: &landmark_mapping_tourism
+  - museum
+  - zoo
+
+def_landmark_fields: &landmark_fields
+  - name: osm_id
+    type: id
+  - name: geometry
+    type: geometry
+  - name: name
+    key: name
+    type: string
+  - name: name_en
+    key: name:en
+    type: string
+  - name: name_de
+    key: name:de
+    type: string
+  - name: tags
+    type: hstore_tags
+  - name: subclass
+    type: mapping_value
+  - name: mapping_key
+    type: mapping_key
+  - name: sport
+    key: sport
+    type: string
+
+def_landmark_mapping: &landmark_mapping
+  amenity: *landmark_mapping_amenity
+  historic: *landmark_mapping_historic
+  landuse: *landmark_mapping_landuse
+  leisure: *landmark_mapping_leisure
+  railway: *landmark_mapping_railway
+  tourism: *landmark_mapping_tourism
+
+tables:
+  # etldoc: imposm3 -> osm_landmark_point
+  landmark_point:
+    type: point
+    columns: *landmark_fields
+    mapping: *landmark_mapping
+
+  # etldoc: imposm3 -> osm_landmark_polygon
+  landmark_polygon:
+    type: polygon
+    columns: *landmark_fields
+    mapping: *landmark_mapping
