@@ -27,13 +27,15 @@ RETURNS INT AS $$
     END;
 $$ LANGUAGE SQL IMMUTABLE;
 
-CREATE OR REPLACE FUNCTION landmark_class(subclass TEXT, mapping_key TEXT) -- TODO
+CREATE OR REPLACE FUNCTION landmark_class(mapping_key TEXT, mapping_value TEXT)
 RETURNS TEXT AS $$
     SELECT CASE
-        %%FIELD_MAPPING: class %%
-        WHEN (subclass = 'station' AND mapping_key = 'railway')
-          OR (subclass IN ('halt', 'tram_stop', 'subway')) THEN 'railway'
-        WHEN (subclass = 'station' AND mapping_key = 'aerialway') THEN 'aerialway'
-        ELSE subclass
+        WHEN (mapping_key = 'amenity' AND mapping_value IN ('place_of_worship', 'townhall', 'hospital'))
+            OR (mapping_key = 'tourism' AND mapping_value = 'museum')
+            OR (mapping_key = 'man_made' AND mapping_value IN 
+                ('lighthouse', 'tower', 'communications_tower', 'water_tower', 'chimney', 'crane', 'gasometer', 'mineshaft', 'telescope', 'windmill', 'obelisk'))
+            OR (mapping_key = 'historic' AND mapping_value IN ('castle', 'memorial', 'monument', 'ruins')) THEN 'point'
+        WHEN mapping_key = 'railway' THEN 'railway'
+        ELSE 'area'
     END;
 $$ LANGUAGE SQL IMMUTABLE;

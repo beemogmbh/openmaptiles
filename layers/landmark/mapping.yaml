@@ -4,6 +4,7 @@
 
 # amenity values, see http://taginfo.openstreetmap.org/keys/amenity#values
 def_landmark_mapping_amenity: &landmark_mapping_amenity
+  - grave_yard
   - hospital
   - place_of_worship
   - public_bath
@@ -11,9 +12,9 @@ def_landmark_mapping_amenity: &landmark_mapping_amenity
 
 # historic values, see http://taginfo.openstreetmap.org/keys/historic#values
 def_landmark_mapping_historic: &landmark_mapping_historic
+  - castle
   - memorial
   - monument
-  - castle
   - ruins
 
 # landuse values, see http://taginfo.openstreetmap.org/keys/landuse#values
@@ -22,6 +23,7 @@ def_landmark_mapping_landuse: &landmark_mapping_landuse
   - cemetery
   - forest
   - landfill
+  - military
   - quarry
   - recreation_ground
 
@@ -35,6 +37,35 @@ def_landmark_mapping_leisure: &landmark_mapping_leisure
   - sports_centre
   - stadium
   - water_park
+
+# man_made values, see http://taginfo.openstreetmap.org/keys/man_made#values
+def_landmark_mapping_man_made: &landmark_mapping_man_made
+  - chimney
+  - communications_tower
+  - crane
+  - gasometer
+  - lighthouse
+  - mineshaft
+  - obelisk
+  - telescope
+  - tower
+  - wastewater_plant
+  - water_tower
+  - water_works
+  - windmill
+
+# military values, see http://taginfo.openstreetmap.org/keys/military#values
+def_landmark_mapping_military: &landmark_mapping_military
+  - danger_area
+
+# natural values, see http://taginfo.openstreetmap.org/keys/natural#values
+def_landmark_mapping_natural: &landmark_mapping_natural
+  - beach
+
+# power values, see http://taginfo.openstreetmap.org/keys/power#values
+def_landmark_mapping_power: &landmark_mapping_power
+  - plant
+  - substation
 
 # railway values, see http://taginfo.openstreetmap.org/keys/railway#values
 def_landmark_mapping_railway: &landmark_mapping_railway
@@ -63,12 +94,21 @@ def_landmark_fields: &landmark_fields
     type: string
   - name: tags
     type: hstore_tags
-  - name: subclass
+  - name: mapping_value
     type: mapping_value
   - name: mapping_key
     type: mapping_key
   - name: sport
     key: sport
+    type: string
+  - name: tower_type
+    key: tower:type
+    type: string
+  - name: memorial
+    key: memorial
+    type: string
+  - name: historic
+    key: historic
     type: string
 
 def_landmark_mapping: &landmark_mapping
@@ -76,6 +116,10 @@ def_landmark_mapping: &landmark_mapping
   historic: *landmark_mapping_historic
   landuse: *landmark_mapping_landuse
   leisure: *landmark_mapping_leisure
+  man_made: *landmark_mapping_man_made
+  military: *landmark_mapping_military
+  power: *landmark_mapping_power
+  natural: *landmark_mapping_natural
   railway: *landmark_mapping_railway
   tourism: *landmark_mapping_tourism
 

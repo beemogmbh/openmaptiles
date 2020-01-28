@@ -3,6 +3,16 @@ DROP TRIGGER IF EXISTS trigger_refresh ON landmark_point.updates;
 
 -- etldoc:  osm_landmark_point ->  osm_landmark_point
 
+CREATE OR REPLACE FUNCTION update_osm_landmark_point() RETURNS VOID AS $$
+BEGIN
+  UPDATE osm_landmark_point
+  SET tags = update_tags(tags, geometry)
+  WHERE COALESCE(tags->'name:latin', tags->'name:nonlatin', tags->'name_int') IS NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT update_osm_landmark_point();
+
 -- Handle updates
 
 CREATE SCHEMA IF NOT EXISTS landmark_point;

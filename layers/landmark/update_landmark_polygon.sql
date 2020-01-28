@@ -3,6 +3,26 @@ DROP TRIGGER IF EXISTS trigger_refresh ON landmark_polygon.updates;
 
 -- etldoc:  osm_landmark_polygon ->  osm_landmark_polygon
 
+CREATE OR REPLACE FUNCTION update_landmark_polygon() RETURNS VOID AS $$
+BEGIN
+  UPDATE osm_landmark_polygon
+  SET geometry =
+  CASE WHEN ST_NPoints(ST_ConvexHull(geometry))=ST_NPoints(geometry)
+    THEN ST_Centroid(geometry)
+    ELSE ST_PointOnSurface(geometry)
+  END
+  WHERE ST_GeometryType(geometry) <> 'ST_Point';
+
+  UPDATE osm_landmark_polygon
+  SET tags = update_tags(tags, geometry)
+  WHERE COALESCE(tags->'name:latin', tags->'name:nonlatin', tags->'name_int') IS NULL;
+
+  ANALYZE osm_landmark_polygon;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT update_landmark_polygon();
+
 -- Handle updates
 
 CREATE SCHEMA IF NOT EXISTS landmark_polygon;
