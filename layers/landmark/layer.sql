@@ -15,34 +15,40 @@ RETURNS TABLE(osm_id bigint, geometry geometry, name text, name_en text, name_de
     FROM (
         -- etldoc: osm_landmark_point ->  layer_landmark:z12
         -- etldoc: osm_landmark_point ->  layer_landmark:z13
-        --SELECT *,
-        --    osm_id*10 AS osm_id_hash FROM osm_landmark_point
-        --    WHERE geometry && bbox
-        --        AND zoom_level BETWEEN 12 AND 13
-        --        AND ((mapping_value='station' AND mapping_key = 'railway')
-        --            OR mapping_value IN ('halt', 'ferry_terminal'))
-        --UNION ALL
+        SELECT *,
+            osm_id*10 AS osm_id_hash FROM osm_landmark_point
+            WHERE geometry && bbox
+                AND zoom_level BETWEEN 12 AND 13
+                AND mapping_key = 'railway' AND mapping_value = 'station'
+        
+        UNION ALL
 
         -- etldoc: osm_landmark_point ->  layer_landmark:z14_
-        --SELECT *,
-        --    osm_id*10 AS osm_id_hash FROM osm_landmark_point
-        --    WHERE geometry && bbox
-        --        AND zoom_level >= 14
+        SELECT *,
+            osm_id*10 AS osm_id_hash FROM osm_landmark_point
+            WHERE geometry && bbox
+                AND zoom_level >= 14
+                AND NOT (mapping_key = 'historic' AND mapping_value = 'memorial' AND memorial NOT IN ('stele', 'obelisk'))
+                AND NOT (mapping_key = 'man_made' AND mapping_value = 'tower' AND tower_type NOT IN 
+                    ('communication', 'elevator_test', 'observation', 'defensive', 'monument'))
+                AND NOT (tower_type = 'monument' AND historic != 'yes')
+                AND NOT (mapping_key = 'landuse' AND mapping_value = 'recreation_ground' AND sport != 'swimming')
+        
+        UNION ALL
 
-        --UNION ALL
         -- etldoc: osm_landmark_polygon ->  layer_landmark:z12
         -- etldoc: osm_landmark_polygon ->  layer_landmark:z13
-        --SELECT *,
-        --    CASE WHEN osm_id<0 THEN -osm_id*10+4
-        --        ELSE osm_id*10+1
-        --    END AS osm_id_hash
-        --FROM osm_landmark_polygon
-        --    WHERE geometry && bbox
-        --        AND zoom_level BETWEEN 12 AND 13
-        --        AND ((mapping_value='station' AND mapping_key = 'railway')
-        --            OR mapping_value IN ('halt', 'ferry_terminal'))
-
-        --UNION ALL
+        SELECT *,
+            CASE WHEN osm_id<0 THEN -osm_id*10+4
+                ELSE osm_id*10+1
+            END AS osm_id_hash
+        FROM osm_landmark_polygon
+            WHERE geometry && bbox
+                AND zoom_level BETWEEN 12 AND 13
+                AND mapping_key = 'railway' AND mapping_value = 'station'
+        
+        UNION ALL
+        
         -- etldoc: osm_landmark_polygon ->  layer_landmark:z14_
         SELECT *,
             CASE WHEN osm_id<0 THEN -osm_id*10+4
@@ -51,8 +57,12 @@ RETURNS TABLE(osm_id bigint, geometry geometry, name text, name_en text, name_de
         FROM osm_landmark_polygon
             WHERE geometry && bbox
                 AND zoom_level >= 14
-                AND name IS NOT NULL
-                AND name != ''
+                AND NOT (mapping_key = 'historic' AND mapping_value = 'memorial' AND memorial NOT IN ('stele', 'obelisk'))
+                AND NOT (mapping_key = 'man_made' AND mapping_value = 'tower' AND tower_type NOT IN 
+                    ('communication', 'elevator_test', 'observation', 'defensive', 'monument'))
+                AND NOT (tower_type = 'monument' AND historic != 'yes')
+                AND NOT (mapping_key = 'landuse' AND mapping_value = 'recreation_ground' AND sport != 'swimming')
+                
         ) as landmark_union
     ORDER BY "rank"
     ;

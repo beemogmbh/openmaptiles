@@ -129,9 +129,19 @@ tables:
     type: point
     columns: *landmark_fields
     mapping: *landmark_mapping
+    filters:
+      require:
+        name: ["__any__"]
+      reject:
+        disused: ["yes"]
 
   # etldoc: imposm3 -> osm_landmark_polygon
   landmark_polygon:
     type: polygon
     columns: *landmark_fields
     mapping: *landmark_mapping
+    filters:
+      require:
+        name: ["__any__"]
+      reject:
+        disused: ["yes"]
