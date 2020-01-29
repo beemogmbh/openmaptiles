@@ -18,6 +18,7 @@ tileset:
     - layers/route/route.yaml
     - layers/rcn_ref_number/rcn_ref_number.yaml
     - layers/landmark/landmark.yaml
+    - layers/power_line/power_line.yaml
 
   name: OpenMapTiles
   version: 3.11.0

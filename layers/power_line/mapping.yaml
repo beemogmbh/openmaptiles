@@ -1,0 +1,21 @@
+generalized_tables:
+  # etldoc: imposm3 -> osm_power_lines_gen1
+  power_lines_gen1:
+    source: power_lines
+    sql_filter: ST_IsValid(geometry)
+    tolerance: ZRES14
+
+tables:
+  power_lines:
+    type: linestring
+    fields:
+    - name: osm_id
+      type: id
+    - name: geometry
+      type: geometry
+    - name: cables
+      key: cables
+      type: string
+    mapping:
+      power: 
+      - line
