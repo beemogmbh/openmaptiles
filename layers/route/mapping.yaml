@@ -1,3 +1,30 @@
+generalized_tables:
+  # etldoc: imposm3 -> osm_route_relation_members_gen5
+  route_relation_members_gen5:
+    source: route_relation_members
+    sql_filter: ST_IsValid(geometry)
+    tolerance: ZRES10
+  # etldoc: imposm3 -> osm_route_relation_members_gen4
+  route_relation_members_gen4:
+    source: route_relation_members
+    sql_filter: ST_IsValid(geometry)
+    tolerance: ZRES11
+  # etldoc: imposm3 -> osm_route_relation_members_gen3
+  route_relation_members_gen3:
+    source: route_relation_members
+    sql_filter: ST_IsValid(geometry)
+    tolerance: ZRES12
+  # etldoc: imposm3 -> osm_route_relation_members_gen2
+  route_relation_members_gen2:
+    source: route_relation_members
+    sql_filter: ST_IsValid(geometry)
+    tolerance: ZRES13
+  # etldoc: imposm3 -> osm_route_relation_members_gen1
+  route_relation_members_gen1:
+    source: route_relation_members
+    sql_filter: ST_IsValid(geometry)
+    tolerance: ZRES14
+
 tables:
   route_relation_members:
     type: relation_member
