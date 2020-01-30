@@ -4,31 +4,31 @@ RETURNS TABLE(osm_id bigint, geometry geometry, class text, network text, ref te
     FROM (
 
         SELECT member, geometry, type, network, ref, name
-        FROM osm_route_relation_members_gen5
+        FROM osm_route_relation_members_gen4
         WHERE zoom_level = 10
         
         UNION ALL
 
         SELECT member, geometry, type, network, ref, name
-        FROM osm_route_relation_members_gen4
+        FROM osm_route_relation_members_gen3
         WHERE zoom_level = 11
         
         UNION ALL
 
         SELECT member, geometry, type, network, ref, name
-        FROM osm_route_relation_members_gen3
+        FROM osm_route_relation_members_gen2
         WHERE zoom_level = 12
         
         UNION ALL
 
         SELECT member, geometry, type, network, ref, name
-        FROM osm_route_relation_members_gen2
+        FROM osm_route_relation_members_gen1
         WHERE zoom_level = 13
         
         UNION ALL
 
         SELECT member, geometry, type, network, ref, name
-        FROM osm_route_relation_members_gen1
+        FROM osm_route_relation_members
         WHERE zoom_level >= 14
 
     ) AS zoom_levels
