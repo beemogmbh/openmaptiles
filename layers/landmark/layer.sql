@@ -10,7 +10,7 @@ RETURNS TABLE(osm_id bigint, geometry geometry, name text, name_en text, name_de
         landmark_class(mapping_key, mapping_value) AS class,
         row_number() OVER (
             PARTITION BY LabelGrid(geometry, 100 * pixel_width)
-            ORDER BY CASE WHEN name = '' THEN 2000 ELSE landmark_class_rank(landmark_class(mapping_key, mapping_value)) END ASC
+            ORDER BY landmark_rank(mapping_key, mapping_value, building) ASC
         )::int AS "rank"
     FROM (
         -- etldoc: osm_landmark_point ->  layer_landmark:z12

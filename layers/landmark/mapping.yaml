@@ -33,8 +33,6 @@ def_landmark_mapping_leisure: &landmark_mapping_leisure
   - park
   - playground
   - pitch
-  - sauna
-  - sports_centre
   - stadium
   - water_park
 
@@ -61,6 +59,10 @@ def_landmark_mapping_military: &landmark_mapping_military
 # natural values, see http://taginfo.openstreetmap.org/keys/natural#values
 def_landmark_mapping_natural: &landmark_mapping_natural
   - beach
+
+# office values, see http://taginfo.openstreetmap.org/keys/office#values
+def_landmark_mapping_office: &landmark_mapping_office
+  - government
 
 # power values, see http://taginfo.openstreetmap.org/keys/power#values
 def_landmark_mapping_power: &landmark_mapping_power
@@ -110,6 +112,9 @@ def_landmark_fields: &landmark_fields
   - name: historic
     key: historic
     type: string
+  - name: building
+    key: building
+    type: string
 
 def_landmark_mapping: &landmark_mapping
   amenity: *landmark_mapping_amenity
@@ -118,8 +123,9 @@ def_landmark_mapping: &landmark_mapping
   leisure: *landmark_mapping_leisure
   man_made: *landmark_mapping_man_made
   military: *landmark_mapping_military
-  power: *landmark_mapping_power
   natural: *landmark_mapping_natural
+  office: *landmark_mapping_office
+  power: *landmark_mapping_power
   railway: *landmark_mapping_railway
   tourism: *landmark_mapping_tourism
 
