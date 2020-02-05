@@ -1,0 +1,37 @@
+layer:
+  id: "landmark"
+  description: |
+      This layer contains POIs that act as landmarks for a better orientation.
+  buffer_size: 64
+  srs: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over
+  fields:
+    name: The OSM [`name`](http://wiki.openstreetmap.org/wiki/Key:name) value of the landmark.
+    name_en: English name `name:en` if available, otherwise `name`.
+    name_de: German name `name:de` if available, otherwise `name` or `name:en`.
+    class:
+      description: |
+        Class of the landmark.
+      values:
+      - point
+      - area
+      - railway
+    rank: |
+        The landmarks are ranked ascending according to their importance within a grid. The `rank` value shows the
+        local relative importance of a landmark within it's cell in the grid. This can be used to reduce label density at *z14*.
+        Since all landmarks already need to be contained at *z14* you can use `less than rank=10` epxression to limit
+        landmarks. At some point like *z17* you can show all landmarks.
+  datasource:
+    geometry_field: geometry
+    key_field: osm_id
+    key_field_as_attribute: no
+    srid: 900913
+    query: (SELECT osm_id, geometry, name, name_en, name_de, {name_languages}, class, rank FROM layer_landmark(!bbox!, z(!scale_denominator!), !pixel_width!)) AS t
+schema:
+  - ./class.sql
+  - ./rank.sql
+  - ./update_landmark_point.sql
+  - ./update_landmark_polygon.sql
+  - ./layer.sql
+datasources:
+  - type: imposm3
+    mapping_file: ./mapping.yaml

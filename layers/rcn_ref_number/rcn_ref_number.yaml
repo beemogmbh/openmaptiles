@@ -7,12 +7,7 @@ layer:
     rcn_ref_num: "Regional cycle route point reference number"
   datasource:
     geometry_field: geometry
-    query: |-
-          (
-            SELECT geometry, rcn_ref_num
-            FROM rcn_ref_label_z7toz14
-            WHERE geometry && !bbox! AND z(!scale_denominator!) BETWEEN 7 AND 14
-          ) AS t
+    query: (SELECT geometry, rcn_ref_num FROM layer_rcn_ref_label(!bbox!, z(!scale_denominator!))) AS t
 schema:
   - ./layer.sql
 datasources:

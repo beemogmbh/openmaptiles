@@ -22,11 +22,7 @@ layer:
     ref: "Reference number or code"
   datasource:
     geometry_field: geometry
-    query: |-
-          ( SELECT geometry, name, ref, network, type AS class
-            FROM route_z7toz14
-            WHERE geometry && !bbox! AND z(!scale_denominator!) BETWEEN 7 AND 14
-          ) AS t
+    query: (SELECT geometry, name, ref, network, class FROM layer_route(!bbox!, z(!scale_denominator!))) AS t
 schema:
   - ./layer.sql
 datasources:

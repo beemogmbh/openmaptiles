@@ -17,4 +17,6 @@ wikidata/*
 # generated source files
 build/*
 
+# any IDE files
 .idea/
+.vscode/
