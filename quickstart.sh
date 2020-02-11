@@ -247,10 +247,10 @@ docker-compose run $DC_OPTS import-wikidata
 
 echo " "
 echo "-------------------------------------------------------------------------------------"
-echo "====> : Running tests for import-priority-and-category"
-make test-import-priority-and-category
+echo "====> : Running tests for import-poi-all"
+make test-import-poi
 echo "====> : Importing priority and category for points of interest"
-make import-priority-and-category
+make import-poi-all
 
 echo " "
 echo "-------------------------------------------------------------------------------------"

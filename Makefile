@@ -41,9 +41,9 @@ help:
 	@echo "  make mapping-graph                     # hint for generating a single mapping graph"
 	@echo "  make import-sql-dev                    # start import-sql /bin/bash terminal"
 	@echo "  make import-osm-dev                    # start import-osm /bin/bash terminal (imposm3)"
-	@echo "  make import-priority                   # import priority data for points of interest"
-	@echo "  make import-priority-and-category      # import category and priority data for points of interest"
-	@echo "  make test-import-priority-and-category # run tests for import priority-and-category"
+	@echo "  make import-poi-priority                   # import priority data for points of interest"
+	@echo "  make import-poi-all				    # import category and priority data for points of interest"
+	@echo "  make test-import-poi					# run tests for import-poi-all"
 	@echo "  make clean-docker                      # remove docker containers, PG data volume"
 	@echo "  make forced-clean-sql                  # drop all PostgreSQL tables for clean environment"
 	@echo "  make docker-unnecessary-clean          # clean unnecessary docker image(s) and container(s)"
@@ -55,18 +55,6 @@ help:
 	@echo "  cat  quickstart.log                    # backup of the last ./quickstart.sh"
 	@echo "  make help                              # help about available commands"
 	@echo "=============================================================================="
-
-.PHONY: import-priority
-import-priority: db-start
-	docker-compose run --rm import-priority
-  
-.PHONY: import-priority-and-category
-import-priority-and-category: db-start
-	docker-compose run --rm import-priority-and-category
-  
-.PHONY: test-import-priority-and-category
-test-import-priority-and-category: db-start
-	docker-compose run --rm test-import-priority-and-category
 
 .PHONY: build
 build:
@@ -127,6 +115,18 @@ import-sql: db-start all
 import-osmsql: db-start all
 	docker-compose run $(DC_OPTS) import-osm
 	docker-compose run $(DC_OPTS) openmaptiles-tools import-sql
+
+.PHONY: import-poi-priority
+import-poi-priority: db-start
+	docker-compose run $(DC_OPTS) import-poi-priority
+  
+.PHONY: import-poi-all
+import-poi-all: db-start
+	docker-compose run $(DC_OPTS) import-poi-all
+  
+.PHONY: test-import-poi
+test-import-poi: db-start
+	docker-compose run $(DC_OPTS) test-import-poi
 
 .PHONY: generate-tiles
 generate-tiles: db-start all
