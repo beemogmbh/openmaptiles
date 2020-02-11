@@ -247,6 +247,13 @@ docker-compose run $DC_OPTS import-wikidata
 
 echo " "
 echo "-------------------------------------------------------------------------------------"
+echo "====> : Running tests for import-priority-and-category"
+make test-import-priority-and-category
+echo "====> : Importing priority and category for points of interest"
+make import-priority-and-category
+
+echo " "
+echo "-------------------------------------------------------------------------------------"
 echo "====> : Start SQL postprocessing:  ./build/tileset.sql -> PostgreSQL "
 echo "      : Source code: https://github.com/openmaptiles/openmaptiles-tools/tree/master/docker/import-sql "
 # If the output contains a WARNING, stop further processing

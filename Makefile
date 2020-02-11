@@ -20,38 +20,53 @@ help:
 	@echo "=============================================================================="
 	@echo " OpenMapTiles  https://github.com/openmaptiles/openmaptiles "
 	@echo "Hints for testing areas                "
-	@echo "  make download-geofabrik-list         # list actual geofabrik OSM extracts for download -> <<your-area>> "
-	@echo "  make list                            # list actual geofabrik OSM extracts for download -> <<your-area>> "
-	@echo "  ./quickstart.sh <<your-area>>        # example:  ./quickstart.sh madagascar "
+	@echo "  make download-geofabrik-list           # list actual geofabrik OSM extracts for download -> <<your-area>> "
+	@echo "  make list                              # list actual geofabrik OSM extracts for download -> <<your-area>> "
+	@echo "  ./quickstart.sh <<your-area>>          # example:  ./quickstart.sh madagascar "
 	@echo "  "
 	@echo "Hints for designers:"
-	@echo "  make start-postserve                 # start Postserver + Maputnik Editor [ see localhost:8088 ] "
-	@echo "  make start-tileserver                # start klokantech/tileserver-gl [ see localhost:8080 ] "
+	@echo "  make start-postserve                   # start Postserver + Maputnik Editor [ see localhost:8088 ] "
+	@echo "  make start-tileserver                  # start klokantech/tileserver-gl [ see localhost:8080 ] "
 	@echo "  "
 	@echo "Hints for developers:"
-	@echo "  make                                 # build source code"
-	@echo "  make download-geofabrik area=albania # download OSM data from geofabrik, and create config file"
-	@echo "  make psql                            # start PostgreSQL console"
-	@echo "  make psql-list-tables                # list all PostgreSQL tables"
-	@echo "  make psql-vacuum-analyze             # PostgreSQL: VACUUM ANALYZE"
-	@echo "  make psql-analyze                    # PostgreSQL: ANALYZE"
-	@echo "  make generate-qareports              # generate reports [./build/qareports]"
-	@echo "  make generate-devdoc                 # generate devdoc including graphs for all layers  [./build/devdoc]"
-	@echo "  make etl-graph                       # hint for generating a single etl graph"
-	@echo "  make mapping-graph                   # hint for generating a single mapping graph"
-	@echo "  make import-sql-dev                  # start import-sql /bin/bash terminal"
-	@echo "  make import-osm-dev                  # start import-osm /bin/bash terminal (imposm3)"
-	@echo "  make clean-docker                    # remove docker containers, PG data volume"
-	@echo "  make forced-clean-sql                # drop all PostgreSQL tables for clean environment"
-	@echo "  make docker-unnecessary-clean        # clean unnecessary docker image(s) and container(s)"
-	@echo "  make refresh-docker-images           # refresh openmaptiles docker images from Docker HUB"
-	@echo "  make remove-docker-images            # remove openmaptiles docker images"
-	@echo "  make pgclimb-list-views              # list PostgreSQL public schema views"
-	@echo "  make pgclimb-list-tables             # list PostgreSQL public schema tables"
-	@echo "  cat  .env                            # list PG database and MIN_ZOOM and MAX_ZOOM information"
-	@echo "  cat  quickstart.log                  # backup of the last ./quickstart.sh"
-	@echo "  make help                            # help about available commands"
+	@echo "  make                                   # build source code"
+	@echo "  make download-geofabrik area=albania   # download OSM data from geofabrik, and create config file"
+	@echo "  make psql                              # start PostgreSQL console"
+	@echo "  make psql-list-tables                  # list all PostgreSQL tables"
+	@echo "  make psql-vacuum-analyze               # PostgreSQL: VACUUM ANALYZE"
+	@echo "  make psql-analyze                      # PostgreSQL: ANALYZE"
+	@echo "  make generate-qareports                # generate reports [./build/qareports]"
+	@echo "  make generate-devdoc                   # generate devdoc including graphs for all layers  [./build/devdoc]"
+	@echo "  make etl-graph                         # hint for generating a single etl graph"
+	@echo "  make mapping-graph                     # hint for generating a single mapping graph"
+	@echo "  make import-sql-dev                    # start import-sql /bin/bash terminal"
+	@echo "  make import-osm-dev                    # start import-osm /bin/bash terminal (imposm3)"
+	@echo "  make import-priority                   # import priority data for points of interest"
+	@echo "  make import-priority-and-category      # import category and priority data for points of interest"
+	@echo "  make test-import-priority-and-category # run tests for import priority-and-category"
+	@echo "  make clean-docker                      # remove docker containers, PG data volume"
+	@echo "  make forced-clean-sql                  # drop all PostgreSQL tables for clean environment"
+	@echo "  make docker-unnecessary-clean          # clean unnecessary docker image(s) and container(s)"
+	@echo "  make refresh-docker-images             # refresh openmaptiles docker images from Docker HUB"
+	@echo "  make remove-docker-images              # remove openmaptiles docker images"
+	@echo "  make pgclimb-list-views                # list PostgreSQL public schema views"
+	@echo "  make pgclimb-list-tables               # list PostgreSQL public schema tables"
+	@echo "  cat  .env                              # list PG database and MIN_ZOOM and MAX_ZOOM information"
+	@echo "  cat  quickstart.log                    # backup of the last ./quickstart.sh"
+	@echo "  make help                              # help about available commands"
 	@echo "=============================================================================="
+
+.PHONY: import-priority
+import-priority: db-start
+	docker-compose run --rm import-priority
+  
+.PHONY: import-priority-and-category
+import-priority-and-category: db-start
+	docker-compose run --rm import-priority-and-category
+  
+.PHONY: test-import-priority-and-category
+test-import-priority-and-category: db-start
+	docker-compose run --rm test-import-priority-and-category
 
 .PHONY: build
 build:

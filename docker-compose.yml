@@ -12,6 +12,24 @@ services:
     ports:
       - "5432:5432"
     env_file: .env
+  import-priority:
+    image: "nexus.beemo.eu:5555/omt/naviki-poi"
+    env_file: .env
+    networks:
+    - postgres_conn
+    command: "priority.sh"
+  import-priority-and-category:
+    image: "nexus.beemo.eu:5555/omt/naviki-poi"
+    env_file: .env
+    networks:
+    - postgres_conn  
+    command: "priority-and-category.sh"
+  test-import-priority-and-category:
+    image: "nexus.beemo.eu:5555/omt/naviki-poi"
+    env_file: .env
+    networks:
+    - postgres_conn
+    command: "test.sh"
   import-natural-earth:
     image: "openmaptiles/import-natural-earth:${TOOLS_VERSION}"
     env_file: .env

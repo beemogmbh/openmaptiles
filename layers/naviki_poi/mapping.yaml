@@ -1,0 +1,479 @@
+def_poi_mapping_aerialway: &poi_mapping_aerialway
+  - cable_car
+  - chair_lift
+  - gondola
+  - station
+
+def_poi_mapping_aeroway: &poi_mapping_aeroway
+  - aerodrome
+  - gate
+  - terminal
+
+def_poi_mapping_bicycle_parking: &poi_mapping_bicycle_parking
+  - stands
+  - wide_stands
+  - shed
+  - streetpod
+  - lockers
+  - bollard
+  - building
+  - tree
+
+def_poi_mapping_amenity: &poi_mapping_amenity
+  - bicycle_rental
+  - bicycle_parking
+  - compressed_air
+  - charging_station
+  - vending_machine
+  - drinking_water
+  - water_point
+  - shelter
+  - arts_centre
+  - fountain
+  - community_centre
+  - theatre
+  - dojo
+  - swimming_pool
+  - sauna
+  - bbq
+  - casino
+  - gambling
+  - cinema
+  - nightclub
+  - restaurant
+  - cafe
+  - ice_cream
+  - biergarten
+  - fast_food
+  - food_court
+  - bar
+  - pub
+  - marketplace
+  - pharmacy
+  - atm
+  - bank
+  - bureau_de_change
+  - clinic
+  - dentist
+  - doctors
+  - hospital
+  - nursing_home
+  - social_facility
+  - veterinary
+  - photo_booth
+  - college
+  - kindergarten
+  - library
+  - school
+  - university
+  - planetarium
+  - courthouse
+  - embassy
+  - ranger_station
+  - register_office
+  - townhall
+  - crypt
+  - place_of_worship
+  - police
+  - post_box
+  - post_office
+  - boat_sharing
+  - ferry_terminal
+  - bus_station
+  - car_rental
+  - car_sharing
+  - taxi
+  - fire_station
+  - rescue_station
+
+def_poi_mapping_building: &poi_mapping_building
+  - hut
+  - public
+  - train_station
+
+def_poi_mapping_craft: &poi_mapping_craft
+  - optician
+  - agricultural_engines
+  - basket_maker
+  - beekeeper
+  - blacksmith
+  - brewery
+  - boatbuilder
+  - bookbinder
+  - carpenter
+  - carpet_layer
+  - caterer
+  - clockmaker
+  - confectionery
+  - dressmaker
+  - electrician
+  - gardener
+  - glaziery
+  - handicraft
+  - hvac
+  - insulation
+  - jeweller
+  - locksmith
+  - key_cutter
+  - metal_construction
+  - painter
+  - parquet_layer
+  - photographer
+  - photographic_laboratory
+  - plasterer
+  - plumber
+  - pottery
+  - rigger
+  - roofer
+  - saddler
+  - sailmaker
+  - sawmill
+  - scaffolder
+  - sculptor
+  - shoemaker
+  - stand_builder
+  - stonemason
+  - sun_protection
+  - sweep
+  - tailor
+  - tiler
+  - tinsmith
+  - upholsterer
+  - watchmaker
+  - window_construction
+
+def_poi_mapping_emergency: &poi_mapping_emergency
+  - ambulance_station
+  - defibrillator
+  - fire_extinguisher
+  - phone
+  - ses_station
+  - assembly_point
+  - access_point
+
+def_poi_mapping_geological: &poi_mapping_geological
+  - palaeontological_site
+
+def_poi_mapping_highway: &poi_mapping_highway
+  - bus_stop
+  - emergency_access_point
+
+def_poi_mapping_historic: &poi_mapping_historic
+  - archaeological_site
+  - aircraft
+  - battlefield
+  - boundary_stone
+  - building
+  - castle
+  - cannon
+  - city_gate
+  - citywalls
+  - farm
+  - fort
+  - manor
+  - memorial
+  - monument
+  - ruins
+  - rune_stone
+  - ship
+  - tomb
+  - wayside_cross
+  - wayside_shrine
+  - wreck
+  - heritage
+  - lighthouse
+
+def_poi_mapping_landuse: &poi_mapping_landuse
+  - forest
+  - reservoir
+  - cemetery
+
+def_poi_mapping_leisure: &poi_mapping_leisure
+  - bird_hide
+  - wildlife_hide
+  - fishing
+  - garden
+  - nature_reserve
+  - park
+  - firepit
+  - golf_course
+  - ice_rink
+  - pitch
+  - sports_centre
+  - stadium
+  - swimming_pool
+  - water_park
+  - track
+  - beach_resort
+  - adult_gaming_centre
+  - amusement_arcade
+  - dog_park
+  - miniature_golf
+  - playground
+  - bandstand
+  - dance
+  - marina
+
+def_poi_mapping_man_made: &poi_mapping_man_made
+  - lighthouse
+  - beacon
+  - watermill
+  - windmill
+
+def_poi_mapping_natural: &poi_mapping_natural
+  - spring
+  - peak
+  - volcano
+  - saddle
+  - rock
+  - stone
+  - sinkhole
+  - cave_entrance
+  - tree
+  - water
+  - cliff
+
+def_poi_mapping_office: &poi_mapping_office
+  - accountant
+  - architect
+  - company
+  - employment_agency
+  - estate_agent
+  - forestry
+  - guide
+  - it
+  - lawyer
+  - newspaper
+  - notary
+  - private_investigator
+  - realtor
+  - real_estate_agent
+  - telecommunication
+  - travel_agent
+  - research
+  - water_utility
+  - insurance
+  - educational_institution
+  - administrative
+  - government
+  - register
+  - tax
+  - association
+  - foundation
+  - ngo
+  - political_party
+  - quango
+  - religion
+
+def_poi_mapping_railway: &poi_mapping_railway
+  - halt
+  - station
+  - subway_entrance
+  - tram_stop
+  - funicular
+
+def_poi_mapping_shop: &poi_mapping_shop
+  - bicycle
+  - massage
+  - alcohol
+  - bakery
+  - beverages
+  - butcher
+  - cheese
+  - chocolate
+  - coffee
+  - confectionery
+  - convenience
+  - deli
+  - dairy
+  - farm
+  - greengrocer
+  - grocery
+  - organic
+  - pasta
+  - seafood
+  - tea
+  - wine
+  - herbalist
+  - baby_goods
+  - bag
+  - boutique
+  - clothes
+  - fabric
+  - fashion
+  - jewelry
+  - leather
+  - shoes
+  - second_hand
+  - fishing
+  - free_flying
+  - outdoor
+  - scuba_diving
+  - sports
+  - tyres
+  - water_sports
+  - travel_agency
+  - department_store
+  - general
+  - mall
+  - supermarket
+  - variety_store
+  - charity
+  - pawnbroker
+  - beauty
+  - chemist
+  - cosmetics
+  - hairdresser
+  - hearing_aids
+  - medical_supply
+  - optician
+  - books
+  - newsagent
+  - kiosk
+  - computer
+  - electronics
+  - hifi
+  - mobile_phone
+  - radiotechnics
+  - vacuum_cleaner
+  - art
+  - craft
+  - frame
+  - games
+  - music
+  - musical_instrument
+  - photo
+  - video
+  - video_games
+  - anime
+  - ticket
+  - pet
+  - pyrotechnics
+  - religion
+  - tobacco
+  - toys
+  - gift
+  - stationery
+  - doityourself
+  - florist
+  - garden_centre
+  - hardware
+  - paint
+  - trade
+  - bathroom_furnishing
+  - furnace
+  - garden_furniture
+  - houseware
+  - locksmith
+  - antiques
+  - bed
+  - candles
+  - carpet
+  - curtain
+  - furniture
+  - interior_decoration
+  - kitchen
+  - window_blind
+  - tattoo
+  - copyshop
+  - dry_cleaning
+  - funeral_directors
+  - laundry
+  - money_lender
+
+def_poi_mapping_tourism: &poi_mapping_tourism
+  - picnic_site
+  - viewpoint
+  - attraction
+  - artwork
+  - gallery
+  - museum
+  - theme_park
+  - zoo
+  - information
+  - hotel
+  - motel
+  - apartment
+  - chalet
+  - guest_house
+  - hostel
+  - camp_site
+  - caravan_site
+  - alpine_hut
+  - wilderness_hut
+
+tags:
+    include: ['service:bicycle:rental', covered, disused, cuisine, genre, sport, water, no_name, drinking_water, vending]
+
+tables:
+  # etldoc: imposm3 -> osm_naviki_poi_polygon
+  naviki_poi_polygon:
+    type: polygon
+    fields:
+    - name: osm_id
+      type: id
+    - name: geometry
+      type: geometry
+    - name: name
+      key: name
+      type: string
+    - name: tags
+      type: hstore_tags
+    - name: website
+      key: contact:website
+      type: string
+    mapping:
+      aerialway: *poi_mapping_aerialway
+      aeroway: *poi_mapping_aeroway
+      amenity: *poi_mapping_amenity
+      bicycle_parking: *poi_mapping_bicycle_parking
+      building: *poi_mapping_building
+      craft: *poi_mapping_craft
+      emergency: *poi_mapping_emergency
+      geological: *poi_mapping_geological
+      highway: *poi_mapping_highway
+      historic: *poi_mapping_historic
+      landuse: *poi_mapping_landuse
+      leisure: *poi_mapping_leisure
+      man_made: *poi_mapping_man_made
+      natural: *poi_mapping_natural
+      office: *poi_mapping_office
+      railway: *poi_mapping_railway
+      shop: *poi_mapping_shop
+      tourism: *poi_mapping_tourism
+
+
+  naviki_poi_point:
+    type: point
+    fields:
+    - name: osm_id
+      type: id
+    - name: geometry
+      type: geometry
+    - name: name
+      key: name
+      type: string
+    - name: tags
+      type: hstore_tags
+    - name: website
+      key: contact:website
+      type: string
+    mapping:
+      aerialway: *poi_mapping_aerialway
+      aeroway: *poi_mapping_aeroway
+      amenity: *poi_mapping_amenity
+      bicycle_parking: *poi_mapping_bicycle_parking
+      building: *poi_mapping_building
+      craft: *poi_mapping_craft
+      emergency: *poi_mapping_emergency
+      geological: *poi_mapping_geological
+      highway: *poi_mapping_highway
+      historic: *poi_mapping_historic
+      landuse: *poi_mapping_landuse
+      leisure: *poi_mapping_leisure
+      man_made: *poi_mapping_man_made
+      natural: *poi_mapping_natural
+      office: *poi_mapping_office
+      railway: *poi_mapping_railway
+      shop: *poi_mapping_shop
+      tourism: *poi_mapping_tourism
