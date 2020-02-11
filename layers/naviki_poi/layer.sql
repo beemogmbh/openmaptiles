@@ -30,8 +30,7 @@ RETURNS TABLE(osm_id bigint, geometry geometry, name text, category text, websit
         ORDER BY "rank") as poi_naviki_union_union 
     WHERE 
     (
-        ("rank" <= 10 and zoom_level < 14) OR
-        (zoom_level >= 14) 
+        ("rank" <= 4 and zoom_level < 14) OR zoom_level >= 14 
     )
     ;
 $$ LANGUAGE SQL IMMUTABLE;
