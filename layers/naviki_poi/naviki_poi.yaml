@@ -4,6 +4,8 @@ layer:
   buffer_size: 64
   fields:
     name: The OSM key:name value.
+    address: The address of this poi.
+    address_en: The english address of this poi, null if neither city_en nor street_en are given.
     category: Naviki category for this poi.
     website: The website link
     rank: |
@@ -16,10 +18,12 @@ layer:
     geometry_field: geometry
     key_field: osm_id
     key_field_as_attribute: no
-    query: (SELECT osm_id, geometry, name, category, website, rank FROM layer_naviki_poi(!bbox!, z(!scale_denominator!), !pixel_width!)) AS t
+    query: (SELECT osm_id, geometry, name, address, address_en, category, website, rank FROM layer_naviki_poi(!bbox!, z(!scale_denominator!), !pixel_width!)) AS t
 schema:
   - ./update_poi_polygon.sql
   - ./layer.sql
+  - ./merge_address.sql
+  - ./merge_en_address.sql
 datasources:
   - type: imposm3
     mapping_file: ./mapping.yaml
