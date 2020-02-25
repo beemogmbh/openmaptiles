@@ -438,6 +438,9 @@ tables:
     - name: tags
       type: hstore_tags
     - name: website
+      key: website
+      type: string
+    - name: contact_website
       key: contact:website
       type: string
     mapping:
@@ -492,6 +495,9 @@ tables:
     - name: tags
       type: hstore_tags
     - name: website
+      key: website
+      type: string
+    - name: contact_website
       key: contact:website
       type: string
     mapping:
