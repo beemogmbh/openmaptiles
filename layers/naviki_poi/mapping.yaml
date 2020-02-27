@@ -85,6 +85,7 @@ def_poi_mapping_amenity: &poi_mapping_amenity
   - taxi
   - fire_station
   - rescue_station
+  - fuel
 
 def_poi_mapping_building: &poi_mapping_building
   - hut
