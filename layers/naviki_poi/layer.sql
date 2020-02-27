@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION layer_naviki_poi(bbox geometry, zoom_level integer, pixel_width numeric)
-RETURNS TABLE(osm_id bigint, geometry geometry, name text, address text, address_en text, category text, website text, "rank" int) AS $$
+RETURNS TABLE(osm_id bigint, geometry geometry, name text, address text, address_en text, category text, osm_type text, website text, "rank" int) AS $$
     SELECT * FROM 
     (
         SELECT 
@@ -9,6 +9,7 @@ RETURNS TABLE(osm_id bigint, geometry geometry, name text, address text, address
             NULLIF(merge_address(street, housenumber, postcode, city), '') AS address,
             NULLIF(merge_en_address(street, street_en, housenumber, postcode, city, city_en), '') AS address_en,
             NULLIF(category, '') AS category,
+            NULLIF(osm_type(tags, category), '') as osm_type,
             NULLIF(merge_website(website, contact_website), '') AS website,
             row_number() OVER (
                 PARTITION BY LabelGrid(geometry, 128 * pixel_width), category

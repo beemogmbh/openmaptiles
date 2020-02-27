@@ -7,6 +7,7 @@ layer:
     address: The address of this poi.
     address_en: The english address of this poi, null if neither city_en nor street_en are given.
     category: Naviki category for this poi.
+    osm_type: Specifies the POI depending on the category, if available.
     website: The website link
     rank: |
         The POIs are ranked ascending according to their importance within a grid. The `rank` value shows the
@@ -18,12 +19,13 @@ layer:
     geometry_field: geometry
     key_field: osm_id
     key_field_as_attribute: no
-    query: (SELECT osm_id, geometry, name, address, address_en, category, website, rank FROM layer_naviki_poi(!bbox!, z(!scale_denominator!), !pixel_width!)) AS t
+    query: (SELECT osm_id, geometry, name, address, address_en, category, osm_type, website, rank FROM layer_naviki_poi(!bbox!, z(!scale_denominator!), !pixel_width!)) AS t
 schema:
   - ./update_poi_polygon.sql
   - ./merge_address.sql
   - ./merge_en_address.sql
   - ./merge_website.sql
+  - ./osm_type.sql
   - ./layer.sql
 datasources:
   - type: imposm3
