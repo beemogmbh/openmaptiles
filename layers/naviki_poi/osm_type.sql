@@ -51,19 +51,19 @@ SELECT CASE
            WHEN category in ('nature_landscape') THEN
                CASE
                    WHEN tags ? 'amenity' THEN tags -> 'amenity'
-                   WHEN tags ? 'building' THEN tags -> 'building'
                    WHEN tags ? 'leisure' THEN tags -> 'leisure'
                    WHEN tags ? 'natural' THEN tags -> 'natural'
                    WHEN tags ? 'tourism' THEN tags -> 'tourism'
                    WHEN tags ? 'landuse' THEN tags -> 'landuse'
                    WHEN tags ? 'geological' THEN tags -> 'geological'
+                   WHEN tags ? 'building' THEN tags -> 'building'
                    ELSE ''
                    END
            WHEN category in ('culture') THEN
                CASE
                    WHEN tags ? 'amenity' THEN tags -> 'amenity'
-                   WHEN tags ? 'historic' THEN tags -> 'historic'
                    WHEN tags ? 'tourism' THEN tags -> 'tourism'
+                   WHEN tags ? 'historic' THEN tags -> 'historic'
                    WHEN tags ? 'landuse' THEN tags -> 'landuse'
                    WHEN tags ? 'man_made' THEN tags -> 'man_made'
                    ELSE ''
@@ -139,8 +139,8 @@ SELECT CASE
            WHEN category IN ('administration') THEN
                CASE
                    WHEN tags ? 'amenity' THEN tags -> 'amenity'
-                   WHEN tags ? 'building' THEN tags -> 'building'
                    WHEN tags ? 'office' THEN tags -> 'office'
+                   WHEN tags ? 'building' THEN tags -> 'building'
                    ELSE ''
                    END
            WHEN category IN ('organisation') THEN
@@ -156,8 +156,8 @@ SELECT CASE
                    END
            WHEN category IN ('railway') THEN
                CASE
-                   WHEN tags ? 'building' THEN tags -> 'building'
                    WHEN tags ? 'railway' THEN tags -> 'railway'
+                   WHEN tags ? 'building' THEN tags -> 'building'
                    ELSE ''
                    END
            WHEN category IN ('bus') THEN
