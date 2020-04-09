@@ -62,13 +62,13 @@ build:
 
 build/openmaptiles.tm2source/data.yml: build
 	mkdir -p build/openmaptiles.tm2source
-	docker-compose run $(DC_OPTS) openmaptiles-tools generate-tm2source openmaptiles.yaml --host="postgres" --port=5432 --database="openmaptiles" --user="openmaptiles" --password="openmaptiles" > build/openmaptiles.tm2source/data.yml
+	generate-tm2source openmaptiles.yaml --host="postgres" --port=5432 --database="openmaptiles" --user="openmaptiles" --password="openmaptiles" > build/openmaptiles.tm2source/data.yml
 
 build/mapping.yaml: build
-	docker-compose run $(DC_OPTS) openmaptiles-tools generate-imposm3 openmaptiles.yaml > build/mapping.yaml
+	generate-imposm3 openmaptiles.yaml > build/mapping.yaml
 
 build/tileset.sql: build
-	docker-compose run $(DC_OPTS) openmaptiles-tools generate-sql openmaptiles.yaml > build/tileset.sql
+	generate-sql openmaptiles.yaml > build/tileset.sql
 
 .PHONY: clean
 clean:
