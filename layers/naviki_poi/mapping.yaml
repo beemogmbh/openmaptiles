@@ -404,7 +404,7 @@ def_poi_mapping_tourism: &poi_mapping_tourism
   - wilderness_hut
 
 tags:
-    include: ['service:bicycle:rental', covered, disused, cuisine, genre, sport, water, no_name, drinking_water,
+    include: [access, 'service:bicycle:rental', covered, disused, cuisine, genre, sport, water, no_name, drinking_water,
               vending, wheelchair, opening_hours, wikidata, wikipedia, phone, capacity, internet_access, stars, 'name:*']
 
 tables:
