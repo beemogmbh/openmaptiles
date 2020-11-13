@@ -30,8 +30,6 @@ CREATE OR REPLACE FUNCTION landmark_point.refresh() RETURNS trigger AS
   BEGIN
     RAISE LOG 'Refresh landmark_point';
     PERFORM update_osm_landmark_point();
-    REFRESH MATERIALIZED VIEW osm_landmark_stop_centroid;
-    REFRESH MATERIALIZED VIEW osm_landmark_stop_rank;
     DELETE FROM landmark_point.updates;
     RETURN null;
   END;

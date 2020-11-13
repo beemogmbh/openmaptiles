@@ -60,12 +60,14 @@ services:
     env_file: .env
     environment:
       DIFF_MODE: ${DIFF_MODE}
+      CONFIG_JSON: ${IMPOSM_CONFIG_FILE} # TODO: switch to IMPOSM_CONFIG_FILE after OMT update?
     command: ./import_update.sh
     networks:
       - postgres_conn
     volumes:
       - ./data:/import
       - ./build:/mapping
+      - ./config:/config
       - cache:/cache
   import-sql:
     # This target is obsolete, and was left for backwards compatibility
