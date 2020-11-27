@@ -1,17 +1,19 @@
 generalized_tables:
+  # TODO remove when using materialized views
+  
   # etldoc: imposm3 -> osm_route_relation_members_gen4
   route_relation_members_gen4:
-    source: route_relation_members
+    source: route_relation_members_gen3
     sql_filter: ST_IsValid(geometry)
     tolerance: ZRES10
   # etldoc: imposm3 -> osm_route_relation_members_gen3
   route_relation_members_gen3:
-    source: route_relation_members
+    source: route_relation_members_gen2
     sql_filter: ST_IsValid(geometry)
     tolerance: ZRES11
   # etldoc: imposm3 -> osm_route_relation_members_gen2
   route_relation_members_gen2:
-    source: route_relation_members
+    source: route_relation_members_gen1
     sql_filter: ST_IsValid(geometry)
     tolerance: ZRES12
   # etldoc: imposm3 -> osm_route_relation_members_gen1
@@ -41,6 +43,7 @@ tables:
       type: string
     - name: type
       type: mapping_value
+    relation_types: [route]
     mapping:
       route: 
       - bicycle
