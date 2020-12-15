@@ -1,3 +1,4 @@
+DROP TRIGGER IF EXISTS trigger_flag ON osm_route_relation_members;
 DROP TRIGGER IF EXISTS trigger_refresh ON route_relation_members.updates;
 
 -- etldoc: osm_route_relation_members -> osm_route_relation_members_mat1
