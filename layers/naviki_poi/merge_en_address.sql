@@ -37,4 +37,4 @@ BEGIN
             END;
 END;
 $$ LANGUAGE plpgsql
-   IMMUTABLE;
+   IMMUTABLE PARALLEL SAFE;

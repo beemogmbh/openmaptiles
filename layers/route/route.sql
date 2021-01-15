@@ -42,4 +42,5 @@ RETURNS TABLE(osm_id bigint, geometry geometry, class text, network text, ref te
     ) AS zoom_levels
     WHERE geometry && bbox;
 
-$$ LANGUAGE SQL IMMUTABLE;
+$$ LANGUAGE SQL IMMUTABLE
+                PARALLEL SAFE;

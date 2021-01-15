@@ -36,4 +36,5 @@ RETURNS TABLE(osm_id bigint, geometry geometry, name text, address text, address
         ("rank" <= 4 and zoom_level < 14) OR zoom_level >= 14 
     )
     ;
-$$ LANGUAGE SQL IMMUTABLE;
+$$ LANGUAGE SQL IMMUTABLE
+                PARALLEL SAFE;

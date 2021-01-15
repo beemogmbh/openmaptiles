@@ -26,7 +26,7 @@ schema:
   - ./merge_en_address.sql
   - ./merge_website.sql
   - ./osm_type.sql
-  - ./layer.sql
+  - ./naviki_poi.sql
 datasources:
   - type: imposm3
     mapping_file: ./mapping.yaml

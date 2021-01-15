@@ -10,4 +10,5 @@ RETURNS TEXT AS $$
         WHEN mapping_key = 'railway' THEN 'railway'
         ELSE 'area'
     END;
-$$ LANGUAGE SQL IMMUTABLE;
+$$ LANGUAGE SQL IMMUTABLE
+                PARALLEL SAFE;

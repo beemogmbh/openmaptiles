@@ -31,7 +31,7 @@ schema:
   - ./rank.sql
   - ./update_landmark_point.sql
   - ./update_landmark_polygon.sql
-  - ./layer.sql
+  - ./landmark.sql
 datasources:
   - type: imposm3
     mapping_file: ./mapping.yaml
