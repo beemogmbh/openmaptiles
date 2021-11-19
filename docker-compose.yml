@@ -60,21 +60,21 @@ services:
       - ./config:/config
 
   import-poi-priority:
-    image: "nexus.beemo.eu:5555/omt/naviki-poi:v${NAVIKI_POI_VERSION}"
+    image: "nexus.beemo.eu:5555/omt/naviki-poi:${NAVIKI_POI_VERSION}"
     env_file: .env
     networks:
     - postgres_conn
     command: "priority.sh"
 
   import-poi-all:
-    image: "nexus.beemo.eu:5555/omt/naviki-poi:v${NAVIKI_POI_VERSION}"
+    image: "nexus.beemo.eu:5555/omt/naviki-poi:${NAVIKI_POI_VERSION}"
     env_file: .env
     networks:
     - postgres_conn  
     command: "priority-and-category.sh"
     
   test-import-poi:
-    image: "nexus.beemo.eu:5555/omt/naviki-poi:v${NAVIKI_POI_VERSION}"
+    image: "nexus.beemo.eu:5555/omt/naviki-poi:${NAVIKI_POI_VERSION}"
     env_file: .env
     networks:
     - postgres_conn
