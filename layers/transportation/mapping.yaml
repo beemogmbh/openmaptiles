@@ -159,6 +159,10 @@ bicycle_field: &bicycle
   key: bicycle
   name: bicycle
   type: string
+bicycle_road_field: &bicycle_road
+  key: bicycle_road
+  name: bicycle_road
+  type: string
 expressway_field: &expressway
   key: expressway
   name: expressway
@@ -210,6 +214,7 @@ tables:
     - *sac_scale
     - *surface
     - *bicycle
+    - *bicycle_road
     - *expressway
     mapping:
       highway:
