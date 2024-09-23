@@ -82,10 +82,11 @@
           "island",
           "islet",
           "neighbourhood",
-          "suburb"
+          "suburb",
+          "borough"
         ]
       ],
-      "order": 158
+      "order": 167
     },
     {
       "id": "place_village",
@@ -128,7 +129,7 @@
           "village"
         ]
       ],
-      "order": 161
+      "order": 171
     },
     {
       "id": "place_town",
@@ -176,7 +177,7 @@
           "town"
         ]
       ],
-      "order": 162
+      "order": 172
     },
     {
       "id": "place_state",
@@ -227,7 +228,7 @@
           3
         ]
       ],
-      "order": 163
+      "order": 173
     },
     {
       "id": "place_city",
@@ -310,7 +311,7 @@
           1
         ]
       ],
-      "order": 164
+      "order": 174
     },
     {
       "id": "place_capital",
@@ -395,7 +396,7 @@
           2
         ]
       ],
-      "order": 165
+      "order": 175
     },
     {
       "id": "country_other",
@@ -448,7 +449,7 @@
           "iso_a2"
         ]
       ],
-      "order": 166
+      "order": 176
     },
     {
       "id": "country_3",
@@ -517,7 +518,7 @@
           "iso_a2"
         ]
       ],
-      "order": 167
+      "order": 177
     },
     {
       "id": "country_2",
@@ -586,7 +587,7 @@
           "iso_a2"
         ]
       ],
-      "order": 168
+      "order": 178
     },
     {
       "id": "country_1",
@@ -655,7 +656,7 @@
           "iso_a2"
         ]
       ],
-      "order": 169
+      "order": 179
     }
   ]
 }
